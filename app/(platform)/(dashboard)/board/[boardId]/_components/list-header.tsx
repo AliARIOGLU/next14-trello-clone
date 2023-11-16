@@ -8,6 +8,7 @@ import { useState, useRef, ElementRef } from "react";
 import { FormInput } from "@/components/form/form-input";
 import { useAction } from "@/hooks/use-action";
 import { updateList } from "@/actions/update-list";
+import { ListOptions } from "./list-options";
 
 interface ListHeaderProps {
   data: List;
@@ -92,11 +93,12 @@ export const ListHeader = ({ data }: ListHeaderProps) => {
       ) : (
         <div
           onClick={enableEditing}
-          className="w-full text-sm px-2.5 py-1 h-7 font-medium border-transparent"
+          className="w-full text-sm px-2.5 py-1 h-7 font-medium border-transparent hover:cursor-pointer"
         >
           {title}
         </div>
       )}
+      <ListOptions data={data} onAddCard={() => {}} />
     </div>
   );
 };
