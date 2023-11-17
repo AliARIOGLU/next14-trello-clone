@@ -12,7 +12,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { FormInput } from "@/components/form/form-input";
 import { useQueryClient } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
-import { useCardModal } from "@/hooks/use-card-modal";
 
 interface HeaderProps {
   data: CardWithList;
@@ -24,17 +23,18 @@ export const Header = ({ data }: HeaderProps) => {
   const params = useParams();
   const queryClient = useQueryClient();
 
-  const { onClose } = useCardModal();
-
   const { execute } = useAction(updateCard, {
     onSuccess: (data) => {
       queryClient.invalidateQueries({
         queryKey: ["card", data.id],
       });
 
+      queryClient.invalidateQueries({
+        queryKey: ["card-logs", data.id],
+      });
+
       toast.success(`Renamed to "${data.title}"`);
       setTitle(data.title);
-      onClose();
     },
     onError: (error) => {
       toast.error(error);
