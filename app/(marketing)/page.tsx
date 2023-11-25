@@ -44,7 +44,11 @@ const MarketingPage = () => {
         high rises to the home office, the way your team works is unique -
         accomplish it all with Taskify.
       </div>
-      <Button className="mt-6" size="lg" asChild>
+      <Button
+        className="mt-6 bg-gradient-to-t from-black to-slate-700"
+        size="lg"
+        asChild
+      >
         <Link href="/sign-up">Get Taskify for free</Link>
       </Button>
     </div>

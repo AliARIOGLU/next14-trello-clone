@@ -1,6 +1,7 @@
 "use client";
 
 import { toast } from "sonner";
+import { X } from "lucide-react";
 
 import {
   Popover,
@@ -15,7 +16,6 @@ import { createBoard } from "@/actions/create-board";
 import { FormInput } from "./form-input";
 import { FormSubmit } from "./form-submit";
 import { Button } from "../ui/button";
-import { X } from "lucide-react";
 import { FormPicker } from "./form-picker";
 import { ElementRef, useRef } from "react";
 import { useRouter } from "next/navigation";

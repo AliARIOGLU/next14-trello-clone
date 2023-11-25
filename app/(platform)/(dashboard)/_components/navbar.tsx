@@ -56,6 +56,10 @@ export const Navbar = () => {
                 height: 30,
                 width: 30,
               },
+              accordionContent: {
+                height: 50,
+                width: 30,
+              },
             },
           }}
         />
