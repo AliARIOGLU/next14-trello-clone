@@ -27,7 +27,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
   if (!canCreate && !isPro) {
     return {
       error:
-        "You have been reached your limit of free bords. Please upgrade your account to create more.",
+        "You have been reached your limit of free boards. Please upgrade your account to create more.",
     };
   }
 

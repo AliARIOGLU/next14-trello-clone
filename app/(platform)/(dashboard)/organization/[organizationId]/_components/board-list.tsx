@@ -1,15 +1,17 @@
+import Link from "next/link";
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
-
-import { FormPopover } from "@/components/form/form-popover";
-import { Hint } from "@/components/hint";
-import { HelpCircle, User2 } from "lucide-react";
 import { redirect } from "next/navigation";
-import Link from "next/link";
-import { Skeleton } from "@/components/ui/skeleton";
-import { MAX_FREE_BOARDS } from "@/constants/boards";
+import { HelpCircle, User2 } from "lucide-react";
+
+import { Hint } from "@/components/hint";
+import { getRelativeTime } from "@/lib/get-time";
 import { getAvailableCount } from "@/lib/org-limit";
 import { checkSubscription } from "@/lib/subscription";
+
+import { Skeleton } from "@/components/ui/skeleton";
+import { FormPopover } from "@/components/form/form-popover";
+import { MAX_FREE_BOARDS } from "@/constants/boards";
 
 export const BoardList = async () => {
   const { orgId } = auth();
@@ -46,6 +48,9 @@ export const BoardList = async () => {
           >
             <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition" />
             <p className="relative font-semibold text-white">{board.title}</p>
+            <span className="absolute bottom-2 right-2 text-white text-xs">
+              {getRelativeTime(board.createdAt.getTime())}
+            </span>
           </Link>
         ))}
         <FormPopover side="right" sideOffset={10}>

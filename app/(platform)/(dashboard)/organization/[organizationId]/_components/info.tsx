@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { Skeleton } from "@/components/ui/skeleton";
-import { useOrganization } from "@clerk/nextjs";
 import { CreditCard } from "lucide-react";
+import { useOrganization } from "@clerk/nextjs";
+
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface InfoProps {
   isPro: boolean;
