@@ -1,5 +1,5 @@
 import { XCircle } from "lucide-react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 interface FormErrorsProps {
   id: string;
@@ -7,6 +7,16 @@ interface FormErrorsProps {
 }
 
 export const FormErrors = ({ id, errors }: FormErrorsProps) => {
+  const [formErrors, setFormErrors] = useState(errors);
+
+  useEffect(() => {
+    setFormErrors(errors);
+
+    return () => {
+      if (errors) delete errors[id];
+    };
+  }, [errors, id]);
+
   if (!errors) {
     return null;
   }
@@ -17,7 +27,7 @@ export const FormErrors = ({ id, errors }: FormErrorsProps) => {
       aria-live="polite"
       className="mt-2 text-xs text-rose-500"
     >
-      {errors?.[id]?.map((error: string) => (
+      {formErrors?.[id]?.map((error: string) => (
         <div
           key={error}
           className="flex items-center font-medium p-2 border border-rose-500 bg-rose-500/10 rounded-sm"
