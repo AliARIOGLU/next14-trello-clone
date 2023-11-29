@@ -2,17 +2,24 @@
 
 import { ElementRef, useRef, useState } from "react";
 import { Board } from "@prisma/client";
+import { toast } from "sonner";
+
+import { useAction } from "@/hooks/use-action";
 import { Button } from "@/components/ui/button";
 import { FormInput } from "@/components/form/form-input";
 import { updateBoard } from "@/actions/update-board";
-import { useAction } from "@/hooks/use-action";
-import { toast } from "sonner";
 
 interface BoardTitleFormProps {
   data: Board;
 }
 
 export const BoardTitleForm = ({ data }: BoardTitleFormProps) => {
+  const [title, setTitle] = useState(data.title);
+  const [isEditing, setIsEditing] = useState(false);
+
+  const formRef = useRef<ElementRef<"form">>(null);
+  const inputRef = useRef<ElementRef<"input">>(null);
+
   const { execute } = useAction(updateBoard, {
     onSuccess: (data) => {
       toast.success(`Board "${data.title}" updated!`);
@@ -23,12 +30,6 @@ export const BoardTitleForm = ({ data }: BoardTitleFormProps) => {
       toast.error(error);
     },
   });
-
-  const formRef = useRef<ElementRef<"form">>(null);
-  const inputRef = useRef<ElementRef<"input">>(null);
-
-  const [title, setTitle] = useState(data.title);
-  const [isEditing, setIsEditing] = useState(false);
 
   const enableEditing = () => {
     setIsEditing(true);
@@ -45,6 +46,8 @@ export const BoardTitleForm = ({ data }: BoardTitleFormProps) => {
   const onSubmit = (formData: FormData) => {
     const title = formData.get("title") as string;
 
+    if (title.trim() === data.title) return;
+
     execute({
       title,
       id: data.id,
@@ -52,7 +55,7 @@ export const BoardTitleForm = ({ data }: BoardTitleFormProps) => {
   };
 
   const onBlur = () => {
-    // input dışına odaklanınca otomatik formu otomatik submit edildi.
+    // input dışına odaklanınca formu otomatik olarak submit edildi.
     formRef.current?.requestSubmit();
   };
 

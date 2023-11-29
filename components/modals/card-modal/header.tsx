@@ -51,7 +51,7 @@ export const Header = ({ data }: HeaderProps) => {
     const title = formData.get("title") as string;
     const boardId = params.boardId as string;
 
-    if (title === data.title) return;
+    if (title.trim() === data.title) return;
 
     execute({
       title,
@@ -75,7 +75,7 @@ export const Header = ({ data }: HeaderProps) => {
           />
         </form>
         <p className="text-sm text-muted-foreground">
-          in list <span className="underline">{data.list.title}</span>
+          in list&nbsp;<span className="underline">{data.list.title}</span>
         </p>
       </div>
     </div>

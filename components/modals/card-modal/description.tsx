@@ -7,9 +7,9 @@ import { useState, useRef, ElementRef } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEventListener, useOnClickOutside } from "usehooks-ts";
 
+import { CardWithList } from "@/types";
 import { useAction } from "@/hooks/use-action";
 import { updateCard } from "@/actions/update-card";
-import { CardWithList } from "@/types";
 import { Skeleton } from "@/components/ui/skeleton";
 import { FormTextarea } from "@/components/form/form-textarea";
 import { FormSubmit } from "@/components/form/form-submit";
@@ -67,6 +67,8 @@ export const Description = ({ data }: DescriptionProps) => {
   const onSubmit = (formData: FormData) => {
     const description = formData.get("description") as string;
     const boardId = params.boardId as string;
+
+    if (description.trim() === data?.description) return;
 
     execute({
       id: data.id,

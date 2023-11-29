@@ -34,7 +34,7 @@ export const ListForm = () => {
     setIsEditing(false);
   };
 
-  const { execute, fieldErrors } = useAction(createList, {
+  const { execute, fieldErrors, isLoading } = useAction(createList, {
     onSuccess: (data) => {
       toast.success(`List ${data.title} created.`);
       disableEditing();
@@ -82,7 +82,7 @@ export const ListForm = () => {
           />
           <input hidden value={boardId} name="boardId" />
           <div className="flex items-center gap-x-1">
-            <FormSubmit>Add list</FormSubmit>
+            <FormSubmit disabled={isLoading}>Add list</FormSubmit>
             <Button onClick={disableEditing} size="sm" variant="ghost">
               <X className="h-5 w-5" />
             </Button>

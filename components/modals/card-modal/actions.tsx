@@ -81,7 +81,7 @@ export const Actions = ({ data }: ActionsProps) => {
         onClick={onDelete}
         disabled={isLoadingDelete}
         variant="gray"
-        className="w-full justify-start"
+        className="w-full justify-start group transition-colors hover:text-rose-700 hover:bg-slate-100"
         size="inline"
       >
         <Trash className="h-4 w-4 mr-2" />
