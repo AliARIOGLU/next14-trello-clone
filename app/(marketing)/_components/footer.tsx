@@ -10,10 +10,10 @@ export const Footer = () => {
           <p className="sm md:text-md">All Rights Reserved © Taskify.com</p>
         </div>
         <div className="space-x-4 md:block md:w-auto flex items-center justify-between w-full order-1 md:order-2">
-          <Button size="sm" variant="ghost">
+          <Button size="sm" variant="ghost" className="hover:underline">
             Privacy Policy
           </Button>
-          <Button size="sm" variant="ghost">
+          <Button size="sm" variant="ghost" className="hover:underline">
             Terms of Service
           </Button>
         </div>
