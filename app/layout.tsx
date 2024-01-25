@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import { inter } from "../font";
+import "../styles/globals.css";
 import { siteConfig } from "@/config/site";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
